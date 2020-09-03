@@ -2,10 +2,7 @@ package com.guo.practice.codepractice.problems.easy;
 
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
+import java.util.*;
 
 @Slf4j
 public class ArrayCollection {
@@ -32,9 +29,12 @@ public class ArrayCollection {
 //        ------------------------------------------------------------------------        //
 //
 //        int[] array = {1,1,1,3,3,4,3,2,4,2};
-        int[] array = {1,2,3,1};
-        log.debug("*** containDuplicate: " + containDuplicate(array));
+//        int[] array = {1,2,3,1};
+//        log.debug("*** containDuplicate: " + containDuplicate(array));
+//
 
+        int[] array = {4, 1, 2, 1, 2};
+        singleNumber(array);
 
 
     }
@@ -44,7 +44,7 @@ public class ArrayCollection {
      *
      * @param arr1
      */
-    static void removeDupeFromSortedArray(int[] arr1) {
+    static int removeDupeFromSortedArray(int[] arr1) {
 
         LinkedList<Integer> linkedList = new LinkedList<>();
 
@@ -57,6 +57,8 @@ public class ArrayCollection {
                 arr1[i] = arr1[j];
             }
         }
+
+        return i + 1;
     }
 
     // suggested solution
@@ -119,7 +121,29 @@ public class ArrayCollection {
         }
 
         log.info("*** rotateArrayBySteps: " + Arrays.toString(linkedList.toArray()));
+
     }
+
+    // suggested solution
+    public void rotate(int[] nums, int k) {
+        k %= nums.length;
+        reverse(nums, 0, nums.length - 1);
+        reverse(nums, 0, k - 1);
+        reverse(nums, k, nums.length - 1);
+    }
+
+    public void reverse(int[] nums, int start, int end) {
+        while (start < end) {
+            int temp = nums[start];
+            nums[start] = nums[end];
+            nums[end] = temp;
+            start++;
+            end--;
+        }
+    }
+
+
+    //        ------------------------------------------------------------------------        //
 
 
     /**
@@ -139,5 +163,71 @@ public class ArrayCollection {
         }
         return false;
     }
+
+
+    //        ------------------------------------------------------------------------        //
+
+    /**
+     * singleNumber
+     * https://leetcode.com/explore/featured/card/top-interview-questions-easy/92/array/549/
+     */
+
+    static int singleNumber(int[] nums) {
+        int number = 0;
+        Map<Integer, Integer> map = new HashMap();
+        for (int i = 0; i < nums.length; i++) {
+            if (map.get(nums[i]) == null) {
+                map.put(nums[i], 1);
+            } else {
+                map.put(nums[i], map.get(nums[i]) + 1);
+            }
+        }
+
+        Set<Integer> keyset = map.keySet();
+        for (Integer key : keyset) {
+            if (map.get(key).intValue() == 1) {
+                number = key.intValue();
+            }
+        }
+
+        log.debug("*** single number: " + number);
+
+        return number;
+
+    }
+
+    static int singlenumbersolutions(int[] nums) {
+        int number = 0;
+        Set<Integer> integers = new HashSet<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (integers.contains(nums[i])) {
+                integers.remove(nums[i]);
+            } else {
+                integers.add(nums[i]);
+            }
+        }
+        Object[] array = integers.toArray();
+        return (int) array[0];
+    }
+
+
+    /**
+     * https://leetcode.com/explore/featured/card/top-interview-questions-easy/92/array/674/
+     *
+     * @param nums1
+     * @param nums2
+     * @return
+     */
+
+    public int[] intersect(int[] nums1, int[] nums2) {
+
+        Set<Integer> integerSet = new HashSet<>();
+        for(int i = 0; i < nums1.length; i++){
+        }
+
+        return nums2;
+
+    }
+
 
 }
