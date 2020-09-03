@@ -1,20 +1,49 @@
 package com.guo.practice.codepractice.problems.easy;
 
-import java.util.LinkedList;
+import lombok.extern.slf4j.Slf4j;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+
+@Slf4j
 public class ArrayCollection {
+
 
     public static void main(String[] args) {
         System.out.println("*** ArrayCollection Main *** ");
 
-        int[] arr1 = {0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
+// removeDupeFromSortedArray
+//        int[] arr1 = {0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
 //        removeDupeFromSortedArray(arr1);
 //        removeDuplicates(arr1);
+//
+//        ------------------------------------------------------------------------        //
+//
+//        int[] array = {7, 1, 5, 3, 6, 4};
+//        log.debug("*** buyAndSaleStock: " + buyAndSaleStock(array));
+//
+//        ------------------------------------------------------------------------        //
+//
+//        int[] array = {1, 2, 3, 4, 5, 6, 7};
+//        rotateArrayBySteps(array, 3);
+
+//        ------------------------------------------------------------------------        //
+//
+//        int[] array = {1,1,1,3,3,4,3,2,4,2};
+        int[] array = {1,2,3,1};
+        log.debug("*** containDuplicate: " + containDuplicate(array));
+
 
 
     }
 
-    //    https://leetcode.com/problems/remove-duplicates-from-sorted-array/solution/
+    /**
+     * https://leetcode.com/problems/remove-duplicates-from-sorted-array/solution/
+     *
+     * @param arr1
+     */
     static void removeDupeFromSortedArray(int[] arr1) {
 
         LinkedList<Integer> linkedList = new LinkedList<>();
@@ -38,7 +67,8 @@ public class ArrayCollection {
             if (nums[j] != nums[i]) {
                 i++;
                 nums[i] = nums[j];
-//                System.out.println(nums[i]);
+//                log.debug("removeDuplicates: " + nums[i]);
+
             }
         }
         return i + 1;
@@ -62,12 +92,52 @@ public class ArrayCollection {
         int price = 0;
         for (int i = 1; i < array.length; i++) {
             if (array[i] > array[i - 1]) {
-                price += array[i - 1] - array[i];
+                price += (array[i] - array[i - 1]);
             }
         }
-
         return price;
     }
 
+
+    /**
+     * Rotate Array
+     * <p>
+     * https://leetcode.com/explore/featured/card/top-interview-questions-easy/92/array/646/
+     */
+    static void rotateArrayBySteps(int[] array, int steps) {
+        // primitive can not auto create to arraylist
+        LinkedList<Integer> linkedList = new LinkedList();
+        for (int i = 0; i < array.length; i++) {
+            linkedList.addLast(array[i]);
+        }
+
+        // steps is action and it start from 1 NOT 0
+        for (int i = 1; i <= steps; i++) {
+            Integer num = linkedList.getLast();
+            linkedList.removeLast();
+            linkedList.addFirst(num);
+        }
+
+        log.info("*** rotateArrayBySteps: " + Arrays.toString(linkedList.toArray()));
+    }
+
+
+    /**
+     * Contains Duplicate
+     * <p>
+     * https://leetcode.com/explore/featured/card/top-interview-questions-easy/92/array/578/
+     */
+    static boolean containDuplicate(int[] array) {
+        // if sorted, we can compare i with i + 1
+        // use map to check not sorted
+        Map<Integer, Boolean> map = new HashMap<>();
+        for (int i = 0; i < array.length; i++) {
+            if (!map.isEmpty() && map.get(array[i]) != null) {
+                return true;
+            }
+            map.put(array[i], true);
+        }
+        return false;
+    }
 
 }
