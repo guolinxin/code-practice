@@ -8,4 +8,12 @@ public class Tree {
     public static void main(String[] args) {
         log.debug("*** Tree main ***");
     }
+
+    /**
+     * https://www.baeldung.com/java-print-binary-tree-diagram
+     *
+     * Print a tree
+     */
+
+    
 }
