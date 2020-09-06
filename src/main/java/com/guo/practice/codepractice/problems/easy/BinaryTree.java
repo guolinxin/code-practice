@@ -227,6 +227,9 @@ public class BinaryTree {
     }
 
     public List<Integer> bfsRecursive() {
+
+        // 1. define Queue to store node
+        // 2. define list to store value
         Queue<Node> queue = new LinkedList<>();
         queue.add(root);
         return breadthFirstSearchRecursive(queue, new ArrayList<>());
@@ -250,6 +253,100 @@ public class BinaryTree {
             queue.add(removedNode.getRight());
             return breadthFirstSearchRecursive(queue, list);
         }
+
+        return list;
+    }
+
+
+    /**
+     * Depth First Search
+     * <p>
+     * Traversal use recursive --> Depth first use recursive
+     *
+     * @return
+     */
+    //
+    //    DFSpre [ 9, 4, 1, 6, 20, 15, 170 ]
+    //    DFSin [ 1, 4, 6, 9, 15, 20, 170 ]
+    //    DFSpost [ 1, 6, 4, 15, 170, 20, 9 ]
+    //
+
+
+    /**
+     * / 1. Pre-order traversal
+     */
+
+    public List<Integer> preOrderDFS() {
+        // 1. define list to store value
+        List<Integer> list = new ArrayList<>();
+        return this.preOrderTraversal(this.root, list);
+    }
+
+    // 2. add value to list in begining
+    private List<Integer> preOrderTraversal(Node node, List<Integer> list) {
+
+        list.add(node.getValue());
+
+        if (node.getLeft() != null) {
+            preOrderTraversal(node.getLeft(), list);
+        }
+
+        if (node.getRight() != null) {
+            preOrderTraversal(node.getRight(), list);
+        }
+
+        return list;
+    }
+
+    /**
+     * // 2. In-order traversal
+     */
+
+    public List<Integer> inOrderDFS() {
+        // 1. define list to store value
+        List<Integer> list = new ArrayList<>();
+        return this.inOrderTraversal(this.root, list);
+    }
+
+    // add value to list in middle
+    private List<Integer> inOrderTraversal(Node node, List<Integer> list) {
+
+        if (node.getLeft() != null) {
+            inOrderTraversal(node.getLeft(), list);
+        }
+
+        list.add(node.getValue());
+
+        if (node.getRight() != null) {
+            inOrderTraversal(node.getRight(), list);
+        }
+
+        return list;
+    }
+
+
+    /**
+     * 3. Post order traversal
+     */
+    public List<Integer> postOrderDFS() {
+        // 1. define list to store value
+        List<Integer> list = new ArrayList<>();
+        return this.postOrderTraversal(this.root, list);
+    }
+
+    private List<Integer> postOrderTraversal(Node node, List<Integer> list) {
+
+        if (node.getLeft() != null) {
+            postOrderTraversal(node.getLeft(), list);
+        }
+
+
+        if (node.getRight() != null) {
+            postOrderTraversal(node.getRight(), list);
+        }
+
+        // add value to list at last
+        list.add(node.getValue());
 
         return list;
     }
