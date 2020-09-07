@@ -223,11 +223,27 @@ public class ArrayCollection {
 
         Set<Integer> integerSet = new HashSet<>();
         for(int i = 0; i < nums1.length; i++){
+
+            // TODO: 06/09/2020
         }
 
         return nums2;
 
     }
 
+
+    /**
+     * reverse linked list
+     * https://leetcode.com/problems/reverse-linked-list/
+     */
+
+    public ListNode reverseList(ListNode head) {
+
+        return  null;
+    }
+
+    /**
+     * https://leetcode.com/problems/reverse-linked-list-ii/
+     */
 
 }
