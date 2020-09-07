@@ -32,10 +32,43 @@ public class ArrayCollection {
 //        int[] array = {1,2,3,1};
 //        log.debug("*** containDuplicate: " + containDuplicate(array));
 //
+//
+//        int[] array = {4, 1, 2, 1, 2};
+//        singleNumber(array);
 
-        int[] array = {4, 1, 2, 1, 2};
-        singleNumber(array);
 
+//        ------------------------------------------------------------------------        //
+
+        LinkedList linkedList = new LinkedList();
+        linkedList.add(1);
+        linkedList.add(2);
+        linkedList.add(3);
+        linkedList.add(4);
+        linkedList.add(5);
+
+        ListNode listNode = new ListNode(1);
+
+
+        ListNode currentNode = new ListNode(2);
+
+        listNode.next = currentNode;
+        int count = 3;
+        while (count < 6) {
+            currentNode.next = new ListNode(count);
+            currentNode = currentNode.next;
+
+            count++;
+
+        }
+
+
+//       ListNode listN =  reverseSingleLinkedList(listNode);
+        log.debug("*** reverse linked list ***");
+
+
+        ListNode ln = reverseBetween(listNode, 2, 4);
+
+        log.debug("*** reverse linked list Between *** " + ln);
 
     }
 
@@ -237,13 +270,73 @@ public class ArrayCollection {
      * https://leetcode.com/problems/reverse-linked-list/
      */
 
-    public ListNode reverseList(ListNode head) {
+    public static ListNode reverseSingleLinkedList(ListNode head) {
 
-        return  null;
+        ListNode prev = null;
+        ListNode current = head;
+
+        while (current != null) {
+
+            ListNode nextTemp = current.next;
+            // 1. next and pre swap, , next become null
+            current.next = prev;
+
+            // 2. move forward prev one step
+            // prev become curr
+            prev = current;
+
+            // 3. move forward current one step
+            // current become next
+            current = nextTemp;
+
+            // continue looping
+        }
+
+        // return first element
+        return prev;
     }
 
     /**
      * https://leetcode.com/problems/reverse-linked-list-ii/
+     * hard
      */
+    public static ListNode reverseBetween(ListNode head, int m, int n) {
 
+        ListNode prev = null;
+        ListNode curr = head;
+
+        // 1. loop to position
+        while (m > 1) {
+            prev = curr;
+            curr = curr.next;
+            m--;
+            // n need too minus as well
+            n--;
+        }
+
+        // 2. store location of listNodes
+        ListNode connection = prev;
+        ListNode tail = curr;
+
+        // 3. start reverse
+        while (n > 0) {
+            ListNode temp = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = temp;
+            n--;
+        }
+
+        if (connection != null) {
+            // link next to revered linked list
+            connection.next = prev;
+        } else {
+            head = prev;
+        }
+
+        // link tail to
+        tail.next = curr;
+        return head;
+
+    }
 }
