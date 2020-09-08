@@ -532,4 +532,32 @@ public class ArrayCollection {
     }
 
 
+    /**
+     * Valid Parentheses
+     * https://leetcode.com/problems/valid-parentheses/
+     */
+    public boolean isValid(String s) {
+
+        // TODO: 08/09/2020
+
+        Stack<Character> stack = new Stack<>();
+
+        // 1. check length can be divided by 2
+
+
+        // 2. Create hash map with key close bracket / value beginning bracket
+
+
+        // 3. check stack is empty / char is valid / the value in stack is matching
+
+
+        // 4. push char to stack if not match
+
+        // return stack empty check
+
+
+        return stack.isEmpty();
+    }
+
+
 }
