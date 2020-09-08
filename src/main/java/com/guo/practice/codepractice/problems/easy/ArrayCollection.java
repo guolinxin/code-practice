@@ -39,36 +39,59 @@ public class ArrayCollection {
 
 //        ------------------------------------------------------------------------        //
 
-        LinkedList linkedList = new LinkedList();
-        linkedList.add(1);
-        linkedList.add(2);
-        linkedList.add(3);
-        linkedList.add(4);
-        linkedList.add(5);
+//        LinkedList linkedList = new LinkedList();
+//        linkedList.add(1);
+//        linkedList.add(2);
+//        linkedList.add(3);
+//        linkedList.add(4);
+//        linkedList.add(5);
+//
+//        ListNode listNode = new ListNode(1);
+//
+//
+//        ListNode currentNode = new ListNode(2);
+//
+//        listNode.next = currentNode;
+//        int count = 3;
+//        while (count < 6) {
+//            currentNode.next = new ListNode(count);
+//            currentNode = currentNode.next;
+//
+//            count++;
+//
+//        }
+//
+//
+////       ListNode listN =  reverseSingleLinkedList(listNode);
+//        log.debug("*** reverse linked list ***");
+//
+//
+//        ListNode ln = reverseBetween(listNode, 2, 4);
+//
+//        log.debug("*** reverse linked list Between *** " + ln);
 
-        ListNode listNode = new ListNode(1);
+        //        ------------------------------------------------------------------------        //
 
+//        int[] nums = {3, 3};
+//        int[] arr = twoSum(nums, 6);
 
-        ListNode currentNode = new ListNode(2);
+        // mergeIntervals
 
-        listNode.next = currentNode;
-        int count = 3;
-        while (count < 6) {
-            currentNode.next = new ListNode(count);
-            currentNode = currentNode.next;
+//        int[][] intervalarray = new int[][]{
+//                {1, 3},
+//                {2, 6},
+//                {8, 10},
+//                {15, 18}
+//        };
+//
+//        mergeIntervals(intervalarray);
 
-            count++;
+        //        ------------------------------------------------------------------------        //
 
-        }
+        int[] arr1 = {1, 2, 2, 1};
+        int[] arr2 = {2, 2};
+        intersect(arr1, arr2);
 
-
-//       ListNode listN =  reverseSingleLinkedList(listNode);
-        log.debug("*** reverse linked list ***");
-
-
-        ListNode ln = reverseBetween(listNode, 2, 4);
-
-        log.debug("*** reverse linked list Between *** " + ln);
 
     }
 
@@ -250,17 +273,50 @@ public class ArrayCollection {
      * @param nums1
      * @param nums2
      * @return
+     *
+     *
+     * time: O(m + n)
+     * space: O(min(m,n))
      */
 
-    public int[] intersect(int[] nums1, int[] nums2) {
+    public static int[] intersect(int[] nums1, int[] nums2) {
 
-        Set<Integer> integerSet = new HashSet<>();
-        for(int i = 0; i < nums1.length; i++){
+        // time: O(m + n)
 
-            // TODO: 06/09/2020
+        // 1. because we need to show intersect from duplicate values as well
+        // 2. make sure largest in map
+        if (nums1.length > nums2.length) {
+            return intersect(nums2, nums1);
         }
 
-        return nums2;
+        // new map to store array
+        Map<Integer, Integer> map = new HashMap();
+        // list to store out put
+        List<Integer> output = new ArrayList<>();
+
+        for (int i = 0; i < nums2.length; i++) {
+            if (map.containsKey(nums2[i])) {
+                map.put(nums2[i], map.getOrDefault(nums2[i], 0) + 1);
+            } else {
+                map.put(nums2[i], 1);
+            }
+        }
+
+        for (int j = 0; j < nums1.length; j++) {
+            if (map.containsKey(nums1[j])) {
+                if (map.get(nums1[j]) > 0) {
+                    output.add(nums1[j]);
+                    map.put(nums1[j], map.get(nums1[j]) - 1);
+                }
+            }
+        }
+
+        int[] result = new int[output.size()];
+        for (int k = 0; k < output.size(); k++) {
+            result[k] = output.get(k);
+        }
+        log.debug("*** intersect *** :" + Arrays.toString(result));
+        return result;
 
     }
 
@@ -305,38 +361,175 @@ public class ArrayCollection {
         ListNode prev = null;
         ListNode curr = head;
 
-        // 1. loop to position
+        // 1. loop to node of index n
+
         while (m > 1) {
             prev = curr;
             curr = curr.next;
             m--;
-            // n need too minus as well
             n--;
         }
 
-        // 2. store location of listNodes
-        ListNode connection = prev;
+        // front of current list
+        ListNode front = prev;
+        // last node of current list
         ListNode tail = curr;
 
-        // 3. start reverse
         while (n > 0) {
+            // temp next
             ListNode temp = curr.next;
+            // swap next to pre, similar to make pre (next) to null
             curr.next = prev;
+            // move forward list
             prev = curr;
             curr = temp;
             n--;
         }
 
-        if (connection != null) {
-            // link next to revered linked list
-            connection.next = prev;
+        if (front != null) {
+            front.next = prev;
         } else {
-            head = prev;
+            front = head;
         }
 
         // link tail to
         tail.next = curr;
         return head;
+    }
+
+
+    /**
+     * Two Sum
+     */
+    public static int[] twoSum(int[] nums, int target) {
+        //////////////////////////////
+        // brute force
+        //////////////////////////////
+
+        // assume only one solution
+        /*
+        for(int i = 0; i< nums.length; i++){
+            for(int j = i + 1; j<nums.length; j++){
+                if(nums[i] + nums[j] == target){
+                  return new int[]{i, j};
+                }
+            }
+        }
+        throw new IllegalArgumentException("Error processing twoSum");
+        */
+
+        //////////////////////////////
+        // HashMap
+        //////////////////////////////
+
+        if (nums.length == 2) {
+            return new int[]{0, 1};
+        }
+
+        Map<Integer, Integer> map = new HashMap();
+        int[] result = new int[2];
+        for (int i = 0; i < nums.length; i++) {
+            int complement = target - nums[i];
+            if (map.containsKey(complement)) {
+                return new int[]{map.get(complement), i};
+            }
+
+            map.put(nums[i], i);
+        }
+
+        return result;
 
     }
+
+
+    /**
+     * Number of Islands
+     * <p>
+     * loop through 2d array
+     */
+    public static int numIslands(char[][] grid) {
+        // count island
+        // if bfs number 1,
+        int count = 0;
+
+        // loop through 2D array
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; i++) {
+                // if found island, check around island with bsf
+                if (grid[i][j] == '1') {
+                    // count + 1
+                    count++;
+
+                    // check around island '1'
+                    callBSF(grid, i, j);
+                }
+            }
+        }
+
+        // return count
+        return count;
+
+    }
+
+    private static void callBSF(char[][] grid, int i, int j) {
+        if (i < 0 || i >= grid.length || j < 0 || j >= grid[i].length || grid[i][j] == '0') {
+            return;
+        }
+
+        // set island number to 0
+        grid[i][j] = '0';
+
+        // check around island with BFS
+        callBSF(grid, i + 1, j); // up
+        callBSF(grid, i - 1, j); // down
+        callBSF(grid, i, j + 1); // right
+        callBSF(grid, i, j - 1); // left
+
+    }
+
+
+    /**
+     * Merge Intervals
+     */
+    public static int[][] mergeIntervals(int[][] intervals) {
+        // if only one array, there will be no intervals
+        if (intervals.length <= 1) {
+            return intervals;
+        }
+
+        // Make sure array is sorted
+        Arrays.sort(intervals, (arr1, arr2) -> Integer.compare(arr1[0], arr2[0]));
+
+//        interval size will be dynamic, we need dynamic array
+        List<int[]> outPutArray = new ArrayList<>();
+
+        // create current array for loop and add current array in out put list
+        // update current array value if required
+        int[] currentArray = intervals[0];
+        outPutArray.add(currentArray);
+        for (int i = 1; i < intervals.length; i++) {
+            // due to array only have 2 values in each array
+            // compare begin and end in arrays
+
+            int currentBegin = currentArray[0];
+            int currentEnd = currentArray[1];
+
+            // get next begin / end
+            int nextBegin = intervals[i][0];
+            int nextEnd = intervals[i][1];
+
+            // consider equal value as well
+            if (currentEnd >= nextBegin) {
+                // update current array value
+                currentArray[1] = Math.max(currentEnd, nextEnd);
+            } else {
+                currentArray = intervals[i];
+                outPutArray.add(currentArray);
+            }
+        }
+
+        return outPutArray.toArray(new int[outPutArray.size()][]);
+    }
+
+
 }
