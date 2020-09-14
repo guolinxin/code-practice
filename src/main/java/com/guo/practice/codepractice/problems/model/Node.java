@@ -1,12 +1,12 @@
-package com.guo.practice.codepractice.problems.easy;
+package com.guo.practice.codepractice.problems.model;
 
 /**
  * 1. create Node class in binary tree
  */
 public class Node {
-    private int value;
-    private Node left;
-    private Node right;
+    public int value;
+    public Node left;
+    public Node right;
 
     // 2. create new node with value constructor
     public Node(int value) {

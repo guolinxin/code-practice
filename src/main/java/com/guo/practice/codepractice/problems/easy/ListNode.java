@@ -1,5 +1,8 @@
 package com.guo.practice.codepractice.problems.easy;
 
+import lombok.Data;
+
+@Data
 public class ListNode {
     int val;
     ListNode next;

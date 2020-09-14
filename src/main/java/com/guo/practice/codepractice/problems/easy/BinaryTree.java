@@ -1,5 +1,6 @@
 package com.guo.practice.codepractice.problems.easy;
 
+import com.guo.practice.codepractice.problems.model.Node;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.*;
@@ -253,6 +254,7 @@ public class BinaryTree {
             queue.add(removedNode.getRight());
             return breadthFirstSearchRecursive(queue, list);
         }
+
 
         return list;
     }

@@ -2,6 +2,7 @@ package com.guo.practice.codepractice.problems.easy;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 @Slf4j
@@ -268,7 +269,7 @@ public class ArrayCollection {
 
 
     /**
-     * https://leetcode.com/explore/featured/card/top-interview-questions-easy/92/array/674/
+     * https://leetcode.com/problems/intersection-of-two-arrays-ii/
      *
      * @param nums1
      * @param nums2
@@ -285,39 +286,63 @@ public class ArrayCollection {
 
         // 1. because we need to show intersect from duplicate values as well
         // 2. make sure largest in map
-        if (nums1.length > nums2.length) {
-            return intersect(nums2, nums1);
-        }
+//        if (nums1.length > nums2.length) {
+//            return intersect(nums2, nums1);
+//        }
+//
+//        // new map to store array
+//        Map<Integer, Integer> map = new HashMap();
+//        // list to store out put
+//        List<Integer> output = new ArrayList<>();
+//
+//        for (int i = 0; i < nums2.length; i++) {
+//            if (map.containsKey(nums2[i])) {
+//                map.put(nums2[i], map.getOrDefault(nums2[i], 0) + 1);
+//            } else {
+//                map.put(nums2[i], 1);
+//            }
+//        }
+//
+//        for (int j = 0; j < nums1.length; j++) {
+//            if (map.containsKey(nums1[j])) {
+//                if (map.get(nums1[j]) > 0) {
+//                    output.add(nums1[j]);
+//                    map.put(nums1[j], map.get(nums1[j]) - 1);
+//                }
+//            }
+//        }
+//
+//        int[] result = new int[output.size()];
+//        for (int k = 0; k < output.size(); k++) {
+//            result[k] = output.get(k);
+//        }
+//        log.debug("*** intersect *** :" + Arrays.toString(result));
 
-        // new map to store array
-        Map<Integer, Integer> map = new HashMap();
-        // list to store out put
-        List<Integer> output = new ArrayList<>();
 
-        for (int i = 0; i < nums2.length; i++) {
-            if (map.containsKey(nums2[i])) {
-                map.put(nums2[i], map.getOrDefault(nums2[i], 0) + 1);
-            } else {
-                map.put(nums2[i], 1);
-            }
-        }
+//        ////////////////////////////////////////////////
 
-        for (int j = 0; j < nums1.length; j++) {
-            if (map.containsKey(nums1[j])) {
-                if (map.get(nums1[j]) > 0) {
-                    output.add(nums1[j]);
-                    map.put(nums1[j], map.get(nums1[j]) - 1);
-                }
-            }
-        }
+        List<Integer> list1 = getArrayList(nums1);
+        List<Integer> list2 = getArrayList(nums2);
 
-        int[] result = new int[output.size()];
-        for (int k = 0; k < output.size(); k++) {
-            result[k] = output.get(k);
+        list2.retainAll(list1);
+        int[] result = new int[list2.size()];
+
+
+        for(int i = 0; i< list2.size(); i++){
+            result[i] = list2.get(i).intValue();
         }
         log.debug("*** intersect *** :" + Arrays.toString(result));
+
         return result;
 
+    }
+
+    private static List<Integer> getArrayList(int[] array){
+        List<Integer> list = new ArrayList<>();
+        for(int i = 0; i< array.length; i++){
+            list.add(array[i]);
+        }
+        return list;
     }
 
 
@@ -535,18 +560,27 @@ public class ArrayCollection {
     /**
      * Valid Parentheses
      * https://leetcode.com/problems/valid-parentheses/
+     * <p>
+     * Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+     * <p>
+     * An input string is valid if:
+     * <p>
+     * Open brackets must be closed by the same type of brackets.
+     * Open brackets must be closed in the correct order.
      */
     public boolean isValid(String s) {
 
-        // TODO: 08/09/2020
+        // TODO: 09/09/2020  practice
+        // reason using stack: bracket open should followed by close
 
         Stack<Character> stack = new Stack<>();
 
         // 1. check length can be divided by 2
-
+ 
 
         // 2. Create hash map with key close bracket / value beginning bracket
 
+        // we use close to find open
 
         // 3. check stack is empty / char is valid / the value in stack is matching
 
