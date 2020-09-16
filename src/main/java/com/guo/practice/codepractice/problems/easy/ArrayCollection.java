@@ -97,7 +97,9 @@ public class ArrayCollection {
     }
 
     /**
-     * https://leetcode.com/problems/remove-duplicates-from-sorted-array/solution/
+     * https://leetcode.com/problems/remove-duplicates-from-sorted-array/
+     *
+     * because its sorted, duplicate will be together, so, two pointer
      *
      * @param arr1
      */
@@ -207,6 +209,9 @@ public class ArrayCollection {
      * Contains Duplicate
      * <p>
      * https://leetcode.com/explore/featured/card/top-interview-questions-easy/92/array/578/
+     *
+     * 1. sort the array and then two pointer
+     * 2. map save key and check key
      */
     static boolean containDuplicate(int[] array) {
         // if sorted, we can compare i with i + 1
@@ -275,6 +280,7 @@ public class ArrayCollection {
      * @param nums2
      * @return
      *
+     * 1. map check if last is greater than first.
      *
      * time: O(m + n)
      * space: O(min(m,n))
