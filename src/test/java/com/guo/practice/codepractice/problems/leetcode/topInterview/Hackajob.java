@@ -195,7 +195,7 @@ public class Hackajob {
                 String inputStr = lettes[k];
                 Character cha = morseEnglishMap.get(inputStr);
                 if (inputStr.length() == 0) {
-                    if(lettes[k-1].length() != 0) {
+                    if (lettes[k - 1].length() != 0) {
                         stringBuilder.append(" ");
                     }
                 } else {
@@ -225,4 +225,129 @@ public class Hackajob {
     }
 
 
+    public void semiprimeNumber(int number) {
+        /*
+         * Write your code below; return type and arguments should be according to the problem's requirements
+         */
+
+
+        boolean isSemiprime = false;
+
+//        return isSemiprime;
+    }
+
+    public boolean check(int number) {
+        int loop = number / 2;
+
+        if ((number != 2) && (number % 2) == 0 && isPrime(loop)) {
+            return true;
+        }
+        for (int i = 3; i <= loop; i += 2) {
+            if (isPrime(i) && (number % i) == 0 && isPrime(number / i)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isPrime(int n) {
+        int loop = n / 2;
+        if (n % 2 == 0) {
+            return false;
+        }
+        for (int i = 3; i <= loop; i += 2) {
+            if (n % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Test
+    public void vowelsandconsonants() {
+        /*
+         * Write your code below; return type and arguments should be according to the problem's requirements
+         */
+        //Counter variable to store the count of vowels and consonant
+        int vCount = 0, cCount = 0;
+
+        //Declare a string
+        String str = "this is an example";
+        String p = str;
+
+        //Converting entire string to lower case to reduce the comparisons
+        str = str.toLowerCase();
+
+        StringBuilder pvStrBuilder = new StringBuilder();
+
+        for (int i = 0; i < str.length(); i++) {
+            //Checks whether a character is a vowel
+            if (str.charAt(i) == 'a' || str.charAt(i) == 'e' || str.charAt(i) == 'i' || str.charAt(i) == 'o' || str.charAt(i) == 'u') {
+                //Increments the vowel counter
+                vCount++;
+
+                pvStrBuilder.append("pv");
+            }
+            //Checks whether a character is a consonant
+            else if (str.charAt(i) >= 'a' && str.charAt(i) <= 'z') {
+                //Increments the consonant counter
+                cCount++;
+            }
+
+            pvStrBuilder.append(p.charAt(i));
+        }
+
+        String pvString = pvStrBuilder.toString();
+
+        System.out.println("Number of vowels: " + vCount);
+        System.out.println("Number of consonants: " + cCount);
+
+        String reverseP = reversePhrase(p);
+        String reverseCharacter = reverseCharacter(reverseP);
+
+        String pWith1 = p.replace(" ", "-");
+
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(vCount)
+                .append(" ")
+                .append(cCount)
+                .append("::")
+                .append(reverseCharacter)
+                .append("::")
+                .append(pWith1)
+                .append("::")
+                .append(pvString)
+
+        ;
+
+        String combined_queries = stringBuilder.toString();
+
+        System.out.println(combined_queries);
+//        return combined_queries;
+    }
+
+    private String reverseCharacter(String input) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < input.length(); i++) {
+            Character letter = input.charAt(i);
+            if (Character.isLowerCase(letter)) {
+                sb.append(letter.toString().toUpperCase());
+            } else {
+                sb.append(letter.toString().toLowerCase());
+            }
+        }
+        return sb.toString();
+    }
+
+    private String reversePhrase(String input) {
+        String[] arr = input.split(" ");
+        StringBuilder sb = new StringBuilder();
+        for (int i = arr.length - 1; i >= 0; i--) {
+            sb.append(arr[i]);
+            if (i > 0) {
+                sb.append(" ");
+            }
+        }
+        return sb.toString();
+    }
 }
