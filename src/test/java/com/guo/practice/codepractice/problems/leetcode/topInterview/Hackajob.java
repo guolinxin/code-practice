@@ -271,7 +271,7 @@ public class Hackajob {
         //Counter variable to store the count of vowels and consonant
         int vCount = 0, cCount = 0;
 
-        //Declare a string
+        //Declare a stringThe Longest Common Subsequence
         String str = "this is an example";
         String p = str;
 
