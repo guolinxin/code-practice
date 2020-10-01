@@ -2,43 +2,68 @@ package com.guo.practice.codepractice.problems.leetcode.topInterview;
 
 import org.junit.jupiter.api.Test;
 
-import java.math.BigDecimal;
+import java.util.function.ToDoubleBiFunction;
 
 public class InterviewQuestions {
 
     @Test
     public void convertNUmberToString() {
-        int input = 1245;
 
+        int input = -1234;
         String output = "";
 
-
-        // cant use String.valueOf if int have leading zeros
-//        String str = String.valueOf(input);
-
-
-
-
-        int leadingZeros = Integer.numberOfLeadingZeros(input);
-        StringBuilder sb = new StringBuilder();
-        if (leadingZeros > 0) {
-            String unsignedString = Integer.toOctalString(input);
-            for(int i=0; i<leadingZeros; i++){
-                sb.append("0");
-            }
-            sb.append(unsignedString);
+        int posInput = input;
+        if(input == 0){
+           // return "0";
+            output =  "0";
         }
 
-        Integer intObj = Integer.valueOf(input);
-        String bit  = Integer.toBinaryString(input);
+        if(input < 0){
+            posInput = Math.abs(input);
+        }
 
-        System.out.println(Integer.rotateLeft(1234000, 5));
+        // Get each digit using math
+        // e.g.: reminder 1234 % 10 = 4
+        // ( 1234 - 4 ) / 10 --> 123
+        // 123 % 10 = 3
+        // 120 / 10 --> 12
+        // 12 --> 2
+        // 10 % 10 = 1
 
-StringBuffer sb = new StringBuffer();
-sb.reverse()
-        String strPattern = "^0+";
+        // 0 % 10 = 0;
+
+        StringBuilder sb = new StringBuilder();
+
+        while(posInput > 0){
+
+            int reminder = posInput % 10;
+            sb.append(reminder);
+
+            // update posInput
+            posInput = (posInput - reminder) / 10;
+        }
+
+        // update output
+        output = input>0? sb.reverse().toString() : "-" + sb.reverse().toString();
 
         System.out.println(output);
+        System.out.println(reverseStr(output));
 
     }
+
+    public static String reverseStr(String str){
+        StringBuilder sb = new StringBuilder();
+        int size = str.length() -1;
+        
+        // reverse string size >=0 
+        // // TODO: 01/10/2020  Don't forgot reverss have case = 0 ******
+        for(int i = size; i >= 0; i--){
+            sb.append(str.charAt(i));
+        }
+        return sb.toString();
+    }
+
+
+
+
 }
