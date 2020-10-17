@@ -57,5 +57,39 @@ public class ArrayQuestion {
         return array;
     }
 
+    @Test
+    public void fibonacci() {
+        System.out.println(fib1(8));
+        System.out.println(fib2(9));
+    }
+
+    /**
+     * @param index
+     * @return
+     */
+    private int fib1(int index) {
+        if (index == 0 || index == 1) {
+            return index;
+        }
+        return fib1(index - 1) + fib1(index - 2);
+    }
+
+    private int fib2(int n) {
+        if (n == 0 || n == 1) {
+            return n;
+        }
+        int n0 = 0;
+        int n1 = 1;
+        int temp;
+
+        // n is index -> i should equal to n
+        for (int i = 2; i <= n; i++) {
+            temp = n0 + n1;
+            n0=n1;
+            n1 = temp;
+        }
+        return n1;
+    }
+
 
 }
