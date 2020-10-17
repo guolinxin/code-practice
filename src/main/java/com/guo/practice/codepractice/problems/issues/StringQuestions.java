@@ -1,4 +1,4 @@
-package com.guo.practice.codepractice.problems.easy;
+package com.guo.practice.codepractice.problems.issues;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -47,7 +47,7 @@ public class StringQuestions {
             leftPointer++;
             rightPointer--;
         }
-                log.debug("*** printReverseArray ***" + Arrays.toString(s));
+        log.debug("*** printReverseArray ***" + Arrays.toString(s));
 
         return s;
 

@@ -1,8 +1,12 @@
 package com.guo.practice.codepractice.problems.leetcode.topInterview;
 
+import com.guo.practice.codepractice.problems.model.Node;
 import com.guo.practice.codepractice.problems.model.TreeNode;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
+
+import java.util.LinkedList;
+import java.util.Queue;
 
 @Slf4j
 public class TreeQuestions {
@@ -43,7 +47,7 @@ public class TreeQuestions {
 
 
     @Test
-    public void isValidBST( ) {
+    public void isValidBST() {
 
         TreeNode node = new TreeNode(5);
         node.left = new TreeNode(1);
@@ -52,15 +56,13 @@ public class TreeQuestions {
         node.right.right = new TreeNode(6);
 
 
-
-
         boolean flag = true;
 
         TreeNode left = node.left;
         TreeNode right = node.right;
 
-        if(node.right.val < node.val || node.left.val > node.val){
-          flag = false;
+        if (node.right.val < node.val || node.left.val > node.val) {
+            flag = false;
         }
 
         while (left != null && left.left != null) {
@@ -81,6 +83,88 @@ public class TreeQuestions {
         }
 
         log.debug("****** isValidBST ****** " + flag);
+
+    }
+
+    @Test
+    public void testGraphRootBetweenNodes() {
+
+        Node node = new Node(5);
+        node.left = new Node(1);
+        node.right = new Node(4);
+        node.right.left = new Node(3);
+        node.right.right = new Node(6);
+
+        // check root node not null
+        if (node == null) {
+            return;
+        }
+
+
+
+        ///////////////////////////////////////////////////
+        ///////////    dfs   ///////////////////////////
+        System.out.println("**************  DFS  ******************");
+
+        testGraphDFS(node);
+
+
+
+
+        ///////////////////////////////////////////////////
+
+        System.out.println("**************  BFS  ******************");
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(node);
+
+        while (!queue.isEmpty()) {
+            // peek retrieve but not remove
+            Node processNode = queue.peek();
+            if (!processNode.isVisited()) {
+                processNode.setVisited(true);
+                visit(processNode);
+            }
+            queue.remove();
+            if (processNode.left != null) {
+                queue.add(processNode.left);
+            }
+
+            if (processNode.right != null) {
+                queue.add(processNode.right);
+
+            }
+
+
+        }
+        System.out.println("Loop end");
+
+
+    }
+
+    private void visit(Node node) {
+        System.out.println("*** Visited Node value *** " + node.value);
+    }
+
+    public void testGraphDFS(Node root){
+
+        if(root == null){
+            return;
+        }
+
+        // pre-order
+//        visit(root);
+        if(root.left != null){
+            testGraphDFS(root.left);
+        }
+// in order
+        visit(root);
+
+        if(root.right != null){
+            testGraphDFS(root.right);
+        }
+
+// post order
+//        visit(root);
 
     }
 

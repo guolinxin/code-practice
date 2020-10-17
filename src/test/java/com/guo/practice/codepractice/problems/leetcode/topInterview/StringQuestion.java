@@ -4,8 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigInteger;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.IntStream;
 
 @Slf4j
@@ -127,6 +126,59 @@ public class StringQuestion {
                 });
         sequence = sb.toString();
 
+    }
+
+
+    public int balancePoint(int[] input) {
+
+
+//        int leftSum = input[0];
+//        int rightSum = 0;;
+//        for(int i=0; i<input.length;i++)//notice we start from 2nd as 1st value is set
+//            rightSum += input[i];//each sum is sum of previous sum plus current value
+//
+//        for(int i=0; i<input.length-1;i++)
+//        {
+//            if(leftSum==rightSum){
+//                return i;
+//            }
+//
+//            leftSum+=input[i+1];
+//            rightSum-=input[i];
+//        }
+
+
+        int leftSum = 0;
+        int rightSum = 0;
+        int i = 0;
+        int j = input.length - 1;
+        for (i = 0; i < input.length; i++) {
+            leftSum += input[i];
+            rightSum += input[j];
+            j--;
+            if (leftSum == rightSum) {
+                return i;
+            }
+        }
+
+//        for (int j = 0; j < input.length; j++) {
+//            if(leftSum == rightSum){
+//                return j;
+//            }
+//            leftSum += input[j + 1];
+//            rightSum -= input[j];
+//        }
+
+        return -1;//otherwise we return -1 as not found
+    }
+
+    @Test
+    public void test1() {
+        int[] input = {1, 2, 9, 4, -1};
+        int[] input2 = new int[]{2, 7, 4, 5, -3, 8, 9, -1};
+
+        int output = balancePoint(input);
+        System.out.println(output);
     }
 
 }

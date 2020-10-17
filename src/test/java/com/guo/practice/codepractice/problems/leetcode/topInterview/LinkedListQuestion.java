@@ -1,6 +1,6 @@
 package com.guo.practice.codepractice.problems.leetcode.topInterview;
 
-import com.guo.practice.codepractice.problems.easy.ListNode;
+import com.guo.practice.codepractice.problems.issues.ListNode;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -16,7 +16,7 @@ public class LinkedListQuestion {
     public void deleteNode(ListNode node) {
 
         // because node has next
-        
+
         // change current node value to "Next node value"
 //        node.val = node.next.val;
 

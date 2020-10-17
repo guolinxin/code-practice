@@ -1,4 +1,4 @@
-package com.guo.practice.codepractice.problems.easy;
+package com.guo.practice.codepractice.problems.issues;
 
 import lombok.Data;
 

@@ -11,7 +11,7 @@ public class CheckFileClass {
 
     class innerClass {
 
-        public void testExcep() throws  IOException{
+        public void testExcep() throws IOException {
 
         }
 

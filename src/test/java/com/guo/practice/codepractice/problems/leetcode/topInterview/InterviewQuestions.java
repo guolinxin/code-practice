@@ -8,17 +8,22 @@ public class InterviewQuestions {
 
     @Test
     public void convertNUmberToString() {
-
         int input = -1234;
+
+        input = 01234;
+
+        System.out.println(String.valueOf("STRING valueOf: " + String.valueOf(input)));
+
         String output = "";
 
+
         int posInput = input;
-        if(input == 0){
-           // return "0";
-            output =  "0";
+        if (input == 0) {
+            // return "0";
+            output = "0";
         }
 
-        if(input < 0){
+        if (input < 0) {
             posInput = Math.abs(input);
         }
 
@@ -34,7 +39,7 @@ public class InterviewQuestions {
 
         StringBuilder sb = new StringBuilder();
 
-        while(posInput > 0){
+        while (posInput > 0) {
 
             int reminder = posInput % 10;
             sb.append(reminder);
@@ -44,26 +49,24 @@ public class InterviewQuestions {
         }
 
         // update output
-        output = input>0? sb.reverse().toString() : "-" + sb.reverse().toString();
+        output = input > 0 ? sb.reverse().toString() : "-" + sb.reverse().toString();
 
         System.out.println(output);
         System.out.println(reverseStr(output));
 
     }
 
-    public static String reverseStr(String str){
+    public static String reverseStr(String str) {
         StringBuilder sb = new StringBuilder();
-        int size = str.length() -1;
-        
+        int size = str.length() - 1;
+
         // reverse string size >=0 
         // // TODO: 01/10/2020  Don't forgot reverss have case = 0 ******
-        for(int i = size; i >= 0; i--){
+        for (int i = size; i >= 0; i--) {
             sb.append(str.charAt(i));
         }
         return sb.toString();
     }
-
-
 
 
 }

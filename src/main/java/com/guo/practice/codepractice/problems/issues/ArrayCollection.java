@@ -1,8 +1,7 @@
-package com.guo.practice.codepractice.problems.easy;
+package com.guo.practice.codepractice.problems.issues;
 
 import lombok.extern.slf4j.Slf4j;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 @Slf4j
@@ -13,9 +12,9 @@ public class ArrayCollection {
         System.out.println("*** ArrayCollection Main *** ");
 
 // removeDupeFromSortedArray
-//        int[] arr1 = {0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
-//        removeDupeFromSortedArray(arr1);
-//        removeDuplicates(arr1);
+        int[] arr1 = {0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
+        removeDupeFromSortedArray(arr1);
+        removeDuplicates(arr1);
 //
 //        ------------------------------------------------------------------------        //
 //
@@ -89,16 +88,16 @@ public class ArrayCollection {
 
         //        ------------------------------------------------------------------------        //
 
-        int[] arr1 = {1, 2, 2, 1};
-        int[] arr2 = {2, 2};
-        intersect(arr1, arr2);
+//        int[] arr1 = {1, 2, 2, 1};
+//        int[] arr2 = {2, 2};
+//        intersect(arr1, arr2);
 
 
     }
 
     /**
      * https://leetcode.com/problems/remove-duplicates-from-sorted-array/
-     *
+     * <p>
      * because its sorted, duplicate will be together, so, two pointer
      *
      * @param arr1
@@ -110,7 +109,7 @@ public class ArrayCollection {
         int i = 0;
         for (int j = 1; j < arr1.length; j++) {
             if (arr1[i] != arr1[j]) {
-                System.out.println(arr1[i]);
+//                System.out.println(arr1[i]);
                 linkedList.addLast(arr1[i]);
                 i++;
                 arr1[i] = arr1[j];
@@ -132,6 +131,8 @@ public class ArrayCollection {
 
             }
         }
+
+        System.out.println(i + 1);
         return i + 1;
     }
 
@@ -209,7 +210,7 @@ public class ArrayCollection {
      * Contains Duplicate
      * <p>
      * https://leetcode.com/explore/featured/card/top-interview-questions-easy/92/array/578/
-     *
+     * <p>
      * 1. sort the array and then two pointer
      * 2. map save key and check key
      */
@@ -278,10 +279,8 @@ public class ArrayCollection {
      *
      * @param nums1
      * @param nums2
-     * @return
-     *
-     * 1. map check if last is greater than first.
-     *
+     * @return 1. map check if last is greater than first.
+     * <p>
      * time: O(m + n)
      * space: O(min(m,n))
      */
@@ -334,7 +333,7 @@ public class ArrayCollection {
         int[] result = new int[list2.size()];
 
 
-        for(int i = 0; i< list2.size(); i++){
+        for (int i = 0; i < list2.size(); i++) {
             result[i] = list2.get(i).intValue();
         }
         log.debug("*** intersect *** :" + Arrays.toString(result));
@@ -343,9 +342,9 @@ public class ArrayCollection {
 
     }
 
-    private static List<Integer> getArrayList(int[] array){
+    private static List<Integer> getArrayList(int[] array) {
         List<Integer> list = new ArrayList<>();
-        for(int i = 0; i< array.length; i++){
+        for (int i = 0; i < array.length; i++) {
             list.add(array[i]);
         }
         return list;
@@ -582,7 +581,7 @@ public class ArrayCollection {
         Stack<Character> stack = new Stack<>();
 
         // 1. check length can be divided by 2
- 
+
 
         // 2. Create hash map with key close bracket / value beginning bracket
 

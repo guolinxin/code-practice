@@ -27,11 +27,11 @@ public class SortSearchQuestion {
         int firIndex = m - 1;
         int secIndex = n - 1;
 
-        for(int i = index; i>=0; i--){
-            if(secIndex <= 0){
+        for (int i = index; i >= 0; i--) {
+            if (secIndex <= 0) {
                 break;
             }
-            if(nums2[secIndex] > nums1[firIndex]){
+            if (nums2[secIndex] > nums1[firIndex]) {
                 nums1[i] = nums2[secIndex];
                 secIndex--;
             } else {

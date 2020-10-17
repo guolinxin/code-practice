@@ -1,6 +1,6 @@
 package com.guo.practice.codepractice.problems;
 
-import com.guo.practice.codepractice.problems.easy.BinaryTree;
+import com.guo.practice.codepractice.problems.issues.BinaryTree;
 import com.guo.practice.codepractice.problems.model.Node;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;

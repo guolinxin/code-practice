@@ -1,4 +1,4 @@
-package com.guo.practice.codepractice.problems.easy;
+package com.guo.practice.codepractice.problems.issues;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -115,7 +115,7 @@ public class Sorting {
 
         long max = numbers[0];
 
-        for (int i =1; i<len; i++){
+        for (int i = 1; i < len; i++) {
             long temp = numbers[i];
             if (numbers[i] > numbers[i - 1]) {
                 if (temp > max) {

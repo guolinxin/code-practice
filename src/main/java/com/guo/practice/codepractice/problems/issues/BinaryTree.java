@@ -1,4 +1,4 @@
-package com.guo.practice.codepractice.problems.easy;
+package com.guo.practice.codepractice.problems.issues;
 
 import com.guo.practice.codepractice.problems.model.Node;
 import lombok.extern.slf4j.Slf4j;

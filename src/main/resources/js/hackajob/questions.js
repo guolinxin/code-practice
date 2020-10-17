@@ -30,9 +30,9 @@ function single_student_number(student_list) {
     // sort the array
 
     var single_student_number = null;
-    var size = student_list.length -1;
+    var size = student_list.length - 1;
 
-    if( 3 > size > 10000 ){
+    if (3 > size > 10000) {
         return single_student_number;
     }
 
@@ -40,21 +40,21 @@ function single_student_number(student_list) {
     student_list.sort();
 
     var j = 1;
-    for(var i = 0; i<student_list.length; i++){
+    for (var i = 0; i < student_list.length; i++) {
 
-        if(2 > student_list[i] > 100000){
+        if (2 > student_list[i] > 100000) {
             return single_student_number;
         }
 
-        if(student_list[i] !== student_list[j]
-            && student_list[j] === student_list[j+1]){
+        if (student_list[i] !== student_list[j]
+            && student_list[j] === student_list[j + 1]) {
             single_student_number = student_list[i];
             return single_student_number;
 
         }
 
         i++;
-        j = j+2;
+        j = j + 2;
 
 
     }
@@ -89,26 +89,26 @@ function run(a) {
     var has_pos = false;
 
 
-    for(var i = 0; i< size; i++){
+    for (var i = 0; i < size; i++) {
         max_ending_here = max_ending_here + a[i];
 
-        if(max_so_far < max_ending_here ){
+        if (max_so_far < max_ending_here) {
             max_so_far = max_ending_here;
         }
-        if(max_ending_here < 0  ){
+        if (max_ending_here < 0) {
             max_ending_here = 0;
         }
-        if( max_neg<0 && max_neg < a[i] ){
+        if (max_neg < 0 && max_neg < a[i]) {
             max_neg = a[i];
         }
 
-        if(a[i] >=0){
+        if (a[i] >= 0) {
             has_pos = true;
         }
 
     }
 
-    if(!has_pos){
+    if (!has_pos) {
         return max_neg;
     }
 
