@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Array;
-import java.util.Arrays;
+import java.util.*;
 import java.util.stream.IntStream;
 
 @Slf4j
@@ -61,6 +61,7 @@ public class ArrayQuestion {
     public void fibonacci() {
         System.out.println(fib1(8));
         System.out.println(fib2(9));
+        System.out.println(fibD(10));
     }
 
     /**
@@ -85,10 +86,38 @@ public class ArrayQuestion {
         // n is index -> i should equal to n
         for (int i = 2; i <= n; i++) {
             temp = n0 + n1;
-            n0=n1;
+            n0 = n1;
             n1 = temp;
         }
         return n1;
+    }
+
+    /**
+     * Dynamic
+     *
+     * @param n
+     * @return
+     */
+    Map<Integer, Integer> fibMap = new HashMap<>();
+
+    private int fibD(int n) {
+        if (fibMap.containsKey(n)) {
+            return fibMap.get(n);
+        }
+        if (n == 0 || n == 1) return n;
+        int fibValue = fibD(n - 1) + fibD(n - 2);
+        fibMap.put(n, fibValue);
+        return fibValue;
+    }
+
+    @Test
+    public void testSET() {
+        Set<String> set = new HashSet<>();
+        String str = "java11";
+        set.add(str);
+        set.add(str);
+
+        set.forEach(System.out::println);
     }
 
 

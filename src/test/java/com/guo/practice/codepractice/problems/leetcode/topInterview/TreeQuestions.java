@@ -2,6 +2,7 @@ package com.guo.practice.codepractice.problems.leetcode.topInterview;
 
 import com.guo.practice.codepractice.problems.model.Node;
 import com.guo.practice.codepractice.problems.model.TreeNode;
+import com.sun.source.tree.Tree;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
@@ -101,14 +102,11 @@ public class TreeQuestions {
         }
 
 
-
         ///////////////////////////////////////////////////
         ///////////    dfs   ///////////////////////////
         System.out.println("**************  DFS  ******************");
 
         testGraphDFS(node);
-
-
 
 
         ///////////////////////////////////////////////////
@@ -145,21 +143,21 @@ public class TreeQuestions {
         System.out.println("*** Visited Node value *** " + node.value);
     }
 
-    public void testGraphDFS(Node root){
+    public void testGraphDFS(Node root) {
 
-        if(root == null){
+        if (root == null) {
             return;
         }
 
         // pre-order
 //        visit(root);
-        if(root.left != null){
+        if (root.left != null) {
             testGraphDFS(root.left);
         }
 // in order
         visit(root);
 
-        if(root.right != null){
+        if (root.right != null) {
             testGraphDFS(root.right);
         }
 
@@ -167,5 +165,25 @@ public class TreeQuestions {
 //        visit(root);
 
     }
+
+    @Test
+    public void invertBinaryTreeTest() {
+
+
+    }
+
+    private TreeNode invertTree(TreeNode root) {
+        if (root == null) {
+            return root;
+        }
+
+        TreeNode left = invertTree(root.left);
+        TreeNode right = invertTree(root.right);
+        root.left = right;
+        root.right = left;
+
+        return root;
+    }
+
 
 }

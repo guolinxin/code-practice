@@ -104,13 +104,10 @@ public class ArrayCollection {
      */
     static int removeDupeFromSortedArray(int[] arr1) {
 
-        LinkedList<Integer> linkedList = new LinkedList<>();
-
         int i = 0;
         for (int j = 1; j < arr1.length; j++) {
             if (arr1[i] != arr1[j]) {
 //                System.out.println(arr1[i]);
-                linkedList.addLast(arr1[i]);
                 i++;
                 arr1[i] = arr1[j];
             }
@@ -131,7 +128,6 @@ public class ArrayCollection {
 
             }
         }
-
         System.out.println(i + 1);
         return i + 1;
     }
