@@ -120,5 +120,72 @@ public class ArrayQuestion {
         set.forEach(System.out::println);
     }
 
+    @Test
+    public void firstUniqueChar() {
+        String str = "aabbcddeffghhi";
+        String firstUnique = findFirstUnique(str);
+
+//        System.out.println(firstUnique);
+    }
+
+    private String findFirstUnique(String str) {
+        // 1. if all characters are alphabet
+        // create boolean array with 26 and only lower case
+
+        int[] count = new int[26];
+
+        for (int i = 0; i < str.length(); i++) {
+            char c = str.charAt(i);
+            count[c - 'a'] = count[c - 'a'] + 1;
+
+            System.out.println(count[c - 'a']);
+        }
+
+        for (int i = 0; i < str.length(); i++) {
+            char c = str.charAt(i);
+            if (count[c - 'a'] == 1) {
+                return String.valueOf(str.charAt(i));
+            }
+        }
+
+
+        return "";
+
+    }
+
+    @Test
+    public void testLetter() {
+        String lettere = "abcdefghijklmnopqrstuvwxyz";
+        for (int i = 0; i < 26; i++) {
+            Character c = lettere.charAt(i);
+            int intc = lettere.charAt(i);
+            System.out.println("letter: " + c + " -> number: " + intc);
+        }
+    }
+
+    @Test
+    public void findDupInArrayTest() {
+//        Input:[4,3,2,7,8,2,3,1]
+//        Output:[2,3]
+        int[] intArr = {4, 3, 2, 7, 8, 2, 3, 1};
+        List<Integer> list = new ArrayList();
+        // 1 sort array
+
+        Arrays.sort(intArr);
+
+        // compare element 1 and 2 if equal,
+        for(int i=0;i< intArr.length; i++){
+            if(intArr.length == i + 1){
+                break;
+            }
+            if(intArr[i] == intArr[i+1]){
+                list.add(intArr[i]);
+            }
+        }
+
+        list.stream().forEach(System.out::println);
+
+    }
+
 
 }
