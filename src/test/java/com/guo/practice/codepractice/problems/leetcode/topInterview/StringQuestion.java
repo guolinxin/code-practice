@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigInteger;
+import java.sql.SQLOutput;
 import java.util.*;
 import java.util.stream.IntStream;
 
@@ -180,5 +181,73 @@ public class StringQuestion {
         int output = balancePoint(input);
         System.out.println(output);
     }
+
+    @Test
+    public void longestSub() {
+        String str = "abcabbcabcd";
+        int a_pointer = 0;
+        int b_pointer = 0;
+        int max = 0;
+
+        Set<Character> set = new HashSet<>();
+        while (b_pointer < str.length()) {
+            if (!set.contains(str.charAt(b_pointer))) {
+                set.add(str.charAt(b_pointer));
+                b_pointer++;
+                max = Math.max(set.size(), max);
+            } else {
+                set.remove(str.charAt(a_pointer));
+                a_pointer++;
+            }
+        }
+
+        System.out.println("max --> " + max);
+    }
+
+    @Test
+    public void selectUniqueSubStrings() {
+        String s = "abcda";
+        char[] c = s.toCharArray();
+
+        Set<String> stringSet = new HashSet<>();
+        // Get all substrings in
+        for (int i = 0; i < s.length(); i++) {
+            for (int j = i + 1; j <= s.length(); j++) {
+                String sub = s.substring(i, j);
+                System.out.println(sub);
+                stringSet.add(sub);
+            }
+        }
+
+        System.out.println("//////////////////////");
+        stringSet.stream().forEach(System.out::println);
+        //
+        //
+    }
+
+    @Test
+    public void snakeCamel(){
+        String snake = "this_is_a_snake_string";
+
+        String camel = snakeToCamel(snake);
+        System.out.println(camel);
+    }
+
+    private String snakeToCamel(String snake) {
+        StringBuilder stringBuilder = new StringBuilder();
+        // split string to String array
+
+        String[] charArray = snake.split("_");
+        for(int i=0; i < charArray.length; i++){
+            String uperCaseLetter = charArray[i].substring(0, 1).toUpperCase();
+            stringBuilder.append(uperCaseLetter)
+                    .append(charArray[i].substring(1));
+            if(i < charArray.length){
+                stringBuilder.append(" ");
+            }
+        }
+        return stringBuilder.toString();
+    }
+
 
 }
