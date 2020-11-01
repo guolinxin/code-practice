@@ -1,6 +1,7 @@
-package com.guo.practice.codepractice.problems.other.simplemap;
+package com.guo.practice.codepractice.problems.other.mycollection;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class MySet<T> {
@@ -19,7 +20,7 @@ public class MySet<T> {
 
     public List<T> getList() {
         if(list == null){
-            list = new ArrayList<>();
+            return Collections.emptyList();
         }
         return list;
     }

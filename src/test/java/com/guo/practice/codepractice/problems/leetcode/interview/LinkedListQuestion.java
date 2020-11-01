@@ -1,4 +1,4 @@
-package com.guo.practice.codepractice.problems.leetcode.topInterview;
+package com.guo.practice.codepractice.problems.leetcode.interview;
 
 import com.guo.practice.codepractice.problems.issues.ListNode;
 import lombok.extern.slf4j.Slf4j;

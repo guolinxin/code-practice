@@ -1,6 +1,5 @@
 package com.guo.practice.codepractice.problems;
 
-import com.guo.practice.codepractice.problems.leetcode.topInterview.Hackajob;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;

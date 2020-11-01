@@ -1,10 +1,9 @@
-package com.guo.practice.codepractice.problems.leetcode.topInterview;
+package com.guo.practice.codepractice.problems.leetcode.interview;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigInteger;
-import java.sql.SQLOutput;
 import java.util.*;
 import java.util.stream.IntStream;
 
@@ -226,7 +225,7 @@ public class StringQuestion {
     }
 
     @Test
-    public void snakeCamel(){
+    public void snakeCamel() {
         String snake = "this_is_a_snake_string";
 
         String camel = snakeToCamel(snake);
@@ -238,16 +237,35 @@ public class StringQuestion {
         // split string to String array
 
         String[] charArray = snake.split("_");
-        for(int i=0; i < charArray.length; i++){
+        for (int i = 0; i < charArray.length; i++) {
             String uperCaseLetter = charArray[i].substring(0, 1).toUpperCase();
             stringBuilder.append(uperCaseLetter)
                     .append(charArray[i].substring(1));
-            if(i < charArray.length){
+            if (i < charArray.length) {
                 stringBuilder.append(" ");
             }
         }
         return stringBuilder.toString();
     }
 
+
+    @Test
+    public void slidingWindowTest() {
+        int[] arr = new int[]{1, 3, 4, 2, 0, 9, 7, 5};
+        int window = 3;
+        int maxSum = Integer.MIN_VALUE;
+        int currentSum = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+            // moving right
+            currentSum += arr[i];
+            if (i >= window - 1) {
+                maxSum = Math.max(maxSum, currentSum);
+                // left - minus element outside the window
+                currentSum -= arr[i - (window - 1)];
+            }
+        }
+        System.out.println(maxSum);
+    }
 
 }

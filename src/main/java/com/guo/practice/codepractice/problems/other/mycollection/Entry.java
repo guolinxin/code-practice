@@ -1,4 +1,4 @@
-package com.guo.practice.codepractice.problems.other.simplemap;
+package com.guo.practice.codepractice.problems.other.mycollection;
 
 public class Entry<K, V> {
     K key;

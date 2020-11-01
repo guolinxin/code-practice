@@ -1,8 +1,6 @@
-package com.guo.practice.codepractice.problems.leetcode.topInterview;
+package com.guo.practice.codepractice.problems.leetcode.interview;
 
 import org.junit.jupiter.api.Test;
-
-import java.util.function.ToDoubleBiFunction;
 
 public class InterviewQuestions {
 

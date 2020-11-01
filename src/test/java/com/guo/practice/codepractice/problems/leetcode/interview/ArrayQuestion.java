@@ -1,11 +1,9 @@
-package com.guo.practice.codepractice.problems.leetcode.topInterview;
+package com.guo.practice.codepractice.problems.leetcode.interview;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Array;
 import java.util.*;
-import java.util.stream.IntStream;
 
 @Slf4j
 public class ArrayQuestion {

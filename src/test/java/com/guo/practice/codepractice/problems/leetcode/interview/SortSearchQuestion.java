@@ -1,9 +1,7 @@
-package com.guo.practice.codepractice.problems.leetcode.topInterview;
+package com.guo.practice.codepractice.problems.leetcode.interview;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-
-import java.util.LinkedList;
 
 @Slf4j
 public class SortSearchQuestion {
