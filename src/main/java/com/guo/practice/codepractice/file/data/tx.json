@@ -1,0 +1,15 @@
+{
+  "res": false,
+  "errors": [
+    {
+      "srId": "8fdc6fe1-3fff-42b6-8c6a-7293c7d6ead2",
+      "proposalId": "2dd87473-39a5-415d-ba96-1c93fd62501c",
+      "reason": "Proposal miss tx_hash"
+    },
+    {
+      "srId": "3da3cde0-d88e-46d3-aae2-c30340e5e172",
+      "proposalId": "4f0e7b1f-2022-4c09-8561-595405b2d3f2",
+      "reason": "Proposal miss tx_hash"
+    }
+  ]
+}

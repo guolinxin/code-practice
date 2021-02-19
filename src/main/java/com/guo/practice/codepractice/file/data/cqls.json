@@ -1,0 +1,2 @@
+select tx_hash from utxo where used_in_tx_proposal=2dd87473-39a5-415d-ba96-1c93fd62501c ALLOW FILTERING;
+select tx_hash from utxo where used_in_tx_proposal=4f0e7b1f-2022-4c09-8561-595405b2d3f2 ALLOW FILTERING;
