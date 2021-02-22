@@ -1,0 +1,36 @@
+{
+  "took": 168,
+  "timed_out": false,
+  "_shards": {
+    "total": 334,
+    "successful": 334,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": 2,
+    "max_score": 1,
+    "hits": [
+      {
+        "_index": "bts_utxo_1.0.6",
+        "_type": "utxo",
+        "_id": "ef6dd61385a019ef49f1723dc3f9990cabbd606c6568c50cda7ea436b219efd0-0",
+        "_score": 1,
+        "_source": {
+          "tx_hash": "ef6dd61385a019ef49f1723dc3f9990cabbd606c6568c50cda7ea436b219efd0",
+          "used_in_tx_proposal": "4f0e7b1f-2022-4c09-8561-595405b2d3f2"
+        }
+      },
+      {
+        "_index": "bts_utxo_1.0.6",
+        "_type": "utxo",
+        "_id": "7471cb7da6ac62d454ab4c427e369a36f7a9a88fb4530b2ea259d91204b50bf1-0",
+        "_score": 1,
+        "_source": {
+          "tx_hash": "7471cb7da6ac62d454ab4c427e369a36f7a9a88fb4530b2ea259d91204b50bf1",
+          "used_in_tx_proposal": "2dd87473-39a5-415d-ba96-1c93fd62501c"
+        }
+      }
+    ]
+  }
+}
