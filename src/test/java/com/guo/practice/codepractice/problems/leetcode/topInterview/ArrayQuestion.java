@@ -3,9 +3,7 @@ package com.guo.practice.codepractice.problems.leetcode.topInterview;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Array;
 import java.util.*;
-import java.util.stream.IntStream;
 
 @Slf4j
 public class ArrayQuestion {
@@ -59,23 +57,23 @@ public class ArrayQuestion {
 
     @Test
     public void fibonacci() {
-        System.out.println(fib1(8));
-        System.out.println(fib2(9));
-        System.out.println(fibD(10));
+        System.out.println(fibSolution1(8));
+        System.out.println(fibSolution2(9));
+        System.out.println(fibSolution3(10));
     }
 
     /**
      * @param index
      * @return
      */
-    private int fib1(int index) {
+    private int fibSolution1(int index) {
         if (index == 0 || index == 1) {
             return index;
         }
-        return fib1(index - 1) + fib1(index - 2);
+        return fibSolution1(index - 1) + fibSolution1(index - 2);
     }
 
-    private int fib2(int n) {
+    private int fibSolution2(int n) {
         if (n == 0 || n == 1) {
             return n;
         }
@@ -100,12 +98,12 @@ public class ArrayQuestion {
      */
     Map<Integer, Integer> fibMap = new HashMap<>();
 
-    private int fibD(int n) {
+    private int fibSolution3(int n) {
         if (fibMap.containsKey(n)) {
             return fibMap.get(n);
         }
         if (n == 0 || n == 1) return n;
-        int fibValue = fibD(n - 1) + fibD(n - 2);
+        int fibValue = fibSolution3(n - 1) + fibSolution3(n - 2);
         fibMap.put(n, fibValue);
         return fibValue;
     }
@@ -174,18 +172,19 @@ public class ArrayQuestion {
         Arrays.sort(intArr);
 
         // compare element 1 and 2 if equal,
-        for(int i=0;i< intArr.length; i++){
-            if(intArr.length == i + 1){
+        for (int i = 0; i < intArr.length; i++) {
+            if (intArr.length == i + 1) {
                 break;
             }
-            if(intArr[i] == intArr[i+1]){
+            if (intArr[i] == intArr[i + 1]) {
                 list.add(intArr[i]);
             }
         }
 
         list.stream().forEach(System.out::println);
-
     }
+
+
 
 
 }

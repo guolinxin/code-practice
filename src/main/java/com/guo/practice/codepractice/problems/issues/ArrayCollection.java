@@ -11,20 +11,16 @@ public class ArrayCollection {
     public static void main(String[] args) {
         System.out.println("*** ArrayCollection Main *** ");
 
-// removeDupeFromSortedArray
-        int[] arr1 = {0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
-        removeDupeFromSortedArray(arr1);
-        removeDuplicates(arr1);
 //
 //        ------------------------------------------------------------------------        //
-//
-//        int[] array = {7, 1, 5, 3, 6, 4};
-//        log.debug("*** buyAndSaleStock: " + buyAndSaleStock(array));
-//
-//        ------------------------------------------------------------------------        //
-//
-//        int[] array = {1, 2, 3, 4, 5, 6, 7};
-//        rotateArrayBySteps(array, 3);
+
+        int[] array = {7, 1, 5, 3, 6, 4};
+        log.debug("*** buyAndSaleStock: " + buyAndSaleStock(array));
+
+     //   ------------------------------------------------------------------------        //
+
+        int[] array2 = {1, 2, 3, 4, 5, 6, 7};
+        rotateArrayBySteps(array, 3);
 
 //        ------------------------------------------------------------------------        //
 //
@@ -95,42 +91,7 @@ public class ArrayCollection {
 
     }
 
-    /**
-     * https://leetcode.com/problems/remove-duplicates-from-sorted-array/
-     * <p>
-     * because its sorted, duplicate will be together, so, two pointer
-     *
-     * @param arr1
-     */
-    static int removeDupeFromSortedArray(int[] arr1) {
 
-        int i = 0;
-        for (int j = 1; j < arr1.length; j++) {
-            if (arr1[i] != arr1[j]) {
-//                System.out.println(arr1[i]);
-                i++;
-                arr1[i] = arr1[j];
-            }
-        }
-
-        return i + 1;
-    }
-
-    // suggested solution
-    public static int removeDuplicates(int[] nums) {
-        if (nums.length == 0) return 0;
-        int i = 0;
-        for (int j = 1; j < nums.length; j++) {
-            if (nums[j] != nums[i]) {
-                i++;
-                nums[i] = nums[j];
-//                log.debug("removeDuplicates: " + nums[i]);
-
-            }
-        }
-        System.out.println(i + 1);
-        return i + 1;
-    }
 
 
     //        ------------------------------------------------------------------------        //
