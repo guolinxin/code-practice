@@ -6,7 +6,9 @@ import com.sun.source.tree.Tree;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 @Slf4j
@@ -183,6 +185,51 @@ public class TreeQuestions {
         root.right = left;
 
         return root;
+    }
+
+
+    @Test
+    public void levelOrderBFSTest() {
+
+        TreeNode node = new TreeNode(3);
+        node.left = new TreeNode(9);
+        node.right = new TreeNode(20);
+        node.right.left = new TreeNode(15);
+        node.right.right = new TreeNode(7);
+        List<List<Integer>> output = levelOrder(node);
+        log.info(output.toString());
+    }
+
+    private List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> lists = new ArrayList();
+        if (root == null) {
+            return lists;
+        }
+        Queue<TreeNode> que = new LinkedList();
+        que.add(root);
+
+        while (!que.isEmpty()) {
+            List<Integer> currentLevel = new ArrayList();
+            int size = que.size();
+            for (int i = 0; i < size; i++) {
+
+                log.info("*** Queue size: "+ que.size() + " ------ i value: " + i );
+
+                TreeNode removeNode = que.remove();
+                currentLevel.add(removeNode.val);
+
+                if (removeNode.left != null) {
+                    que.add(removeNode.left);
+                }
+                if (removeNode.right != null) {
+                    que.add(removeNode.right);
+                }
+            }
+
+            lists.add(currentLevel);
+        }
+        return lists;
+
     }
 
 

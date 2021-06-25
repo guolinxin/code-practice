@@ -1,5 +1,8 @@
 package com.guo.practice.codepractice.problems.model;
 
+/**
+ * Leetcode TreeNode model
+ */
 public class TreeNode {
     public int val;
     public TreeNode left;

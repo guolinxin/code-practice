@@ -246,13 +246,13 @@ public class BinaryTree {
         if (removedNode.getLeft() != null) {
             list.add(removedNode.getValue());
             queue.add(removedNode.getLeft());
-            return breadthFirstSearchRecursive(queue, list);
+             breadthFirstSearchRecursive(queue, list);
         }
 
         if (removedNode.getRight() != null) {
             list.add(removedNode.getValue());
             queue.add(removedNode.getRight());
-            return breadthFirstSearchRecursive(queue, list);
+            breadthFirstSearchRecursive(queue, list);
         }
 
 
@@ -296,7 +296,6 @@ public class BinaryTree {
         if (node.getRight() != null) {
             preOrderTraversal(node.getRight(), list);
         }
-
         return list;
     }
 
