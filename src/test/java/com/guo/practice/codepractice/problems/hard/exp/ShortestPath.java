@@ -39,23 +39,23 @@ public class ShortestPath {
 
         }
 
-        Field field = build(nodes, connections);
-        Node endNode = field.nodes.get(field.nodes.size() - 1);
+        Graph graph = build(nodes, connections);
+        Node endNode = graph.nodes.get(graph.nodes.size() - 1);
         weigh(endNode);
-        return field.getShortestPath();
+        return graph.getShortestPath();
     }
 
-    Field build(String[] nodes, String[] connections) {
-        Field field = new Field(nodes);
-        for (Node node : field.nodes) {
+    Graph build(String[] nodes, String[] connections) {
+        Graph graph = new Graph(nodes);
+        for (Node node : graph.nodes) {
             for (String connection : connections) {
                 if (connection.contains(node.name)) {
                     String[] neighbours = connection.split("-");
                     Node neighbour;
                     if (neighbours[0].equals(node.name)) {
-                        neighbour = field.findNode(neighbours[1]);
+                        neighbour = graph.findNode(neighbours[1]);
                     } else {
-                        neighbour = field.findNode(neighbours[0]);
+                        neighbour = graph.findNode(neighbours[0]);
                     }
 
                     node.addNeighbour(neighbour);
@@ -63,7 +63,7 @@ public class ShortestPath {
             }
         }
 
-        return field;
+        return graph;
     }
 
     void weigh(Node node) {
@@ -84,11 +84,11 @@ public class ShortestPath {
 
     }
 
-    class Field {
+    class Graph {
         int nrOfNodes;
         List<Node> nodes;
 
-        Field(String[] nodes) {
+        Graph(String[] nodes) {
             this.nrOfNodes = nodes.length;
             this.nodes = new ArrayList<Node>();
 

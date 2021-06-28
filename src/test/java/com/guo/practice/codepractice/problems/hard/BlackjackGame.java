@@ -62,11 +62,11 @@ public class BlackjackGame {
 
     // output
     if (total < 21) {
-      output = "below " + highest.repr;
+      output = "below " + highest.name;
     } else if (total == 21) {
-      output = "blackjack " + highest.repr;
+      output = "blackjack " + highest.name;
     } else {
-      output = "above " + highest.repr;
+      output = "above " + highest.name;
     }
     return output;
   }
@@ -75,11 +75,11 @@ public class BlackjackGame {
 
   class Card implements Comparable<Card> {
     int lowVal = 0, topVal = 0, rating = 0;
-    String repr;
+    String name;
 
     Card(String card) {
       card = card.toLowerCase();
-      repr = card;
+      name = card;
 
       if (card.equals("two")) {
         lowVal = 2;
@@ -148,14 +148,13 @@ public class BlackjackGame {
   }
 
   @Test
-  public void testGame(){
+  public void testGame() {
     BlackjackGame game = new BlackjackGame();
-    System.out.print(game.blackJackHighest(new String[] {"four","seven", "ten"}));
-//        System.out.print(game.blackJackHighest(new String[] {"jack","ace"}));
-//        System.out.print(game.blackJackHighest(new String[] {"two","three","ace","king"}));
-//        System.out.print(game.blackJackHighest(new String[] { "jack", "queen", "king"}));
-//        System.out.print(game.blackJackHighest(new String[] {"two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "jack", "queen", "king", "ace"}));
+    System.out.print(game.blackJackHighest(new String[] {"four", "seven", "ten"}));
+    //        System.out.print(game.blackJackHighest(new String[] {"jack","ace"}));
+    //        System.out.print(game.blackJackHighest(new String[] {"two","three","ace","king"}));
+    //        System.out.print(game.blackJackHighest(new String[] { "jack", "queen", "king"}));
+    //        System.out.print(game.blackJackHighest(new String[] {"two", "three", "four", "five",
+    // "six", "seven", "eight", "nine", "ten", "jack", "queen", "king", "ace"}));
   }
-
-
 }

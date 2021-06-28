@@ -25,105 +25,8 @@ import java.util.Scanner;
  *
  */
 public class WeightedPath {
-    String WeightedPath(String[] strArr) {
-        int nrOfNodes = Integer.parseInt(strArr[0]);
-        String[] nodes = new String[nrOfNodes];
-        String[] connections = new String[strArr.length - nrOfNodes - 1];
 
-        for (int i = 1; i < strArr.length; i++) {
-            if (i <= nrOfNodes) {
-                nodes[i - 1] = strArr[i];
-            } else {
-                connections[i - nrOfNodes - 1] = strArr[i];
-            }
-
-        }
-
-        Field field = build(nodes, connections);
-        Node endNode = field.nodes.get(field.nodes.size() - 1);
-        weigh(endNode);
-        return field.getShortestPath();
-    }
-
-    Field build(String[] nodes, String[] connections) {
-        Field field = new Field(nodes);
-        for (Node node : field.nodes) {
-            for (String connection : connections) {
-                if (connection.contains(node.name)) {
-                    String[] neighbours = connection.split("[|]");
-                    Node neighbour;
-                    if (neighbours[0].equals(node.name)) {
-                        neighbour = field.findNode(neighbours[1]);
-                    } else {
-                        neighbour = field.findNode(neighbours[0]);
-                    }
-
-                    node.addConnection(neighbour, Integer.parseInt(neighbours[2]));
-                }
-            }
-        }
-
-        return field;
-    }
-
-    void weigh(Node node) {
-        if (node.end) {
-            node.weight = 0;
-        }
-
-        for (Connection connection : node.connections) {
-            int weight = node.weight + connection.weight;
-            Node neigbour = connection.getOther(node);
-            if (neigbour.weight == 0 || weight < neigbour.weight) {
-                neigbour.weight = weight;
-
-                if (!neigbour.start) {
-                    weigh(neigbour);
-                }
-            }
-        }
-
-    }
-
-    class Field {
-        int nrOfNodes;
-        List<Node> nodes;
-
-        Field(String[] nodes) {
-            this.nrOfNodes = nodes.length;
-            this.nodes = new ArrayList<Node>();
-
-            for (int i = 0; i < nodes.length; i++) {
-                this.nodes.add(new Node(nodes[i], i == 0, i == nodes.length - 1));
-            }
-        }
-
-        Node findNode(String nodeName) {
-            for (Node node : this.nodes) {
-                if (node.name.equals(nodeName)) {
-                    return node;
-                }
-            }
-            return null;
-        }
-
-        String getShortestPath() {
-            StringBuilder path = new StringBuilder("");
-            Node nextNode = this.nodes.get(0);
-
-            if (nextNode.weight == 0) return "-1";
-
-            path.append(nextNode.name).append("-");
-            while ((nextNode = nextNode.getNextNeighbour()) != null) {
-                path.append(nextNode.name);
-                if (!nextNode.end) {
-                    path.append("-");
-                }
-            }
-            return path.toString();
-        }
-    }
-
+    // 1. create node
     class Node {
         String name;
         boolean start;
@@ -162,6 +65,7 @@ public class WeightedPath {
         }
     }
 
+    // create connection
     class Connection {
         Node from;
         Node to;
@@ -180,10 +84,114 @@ public class WeightedPath {
         }
     }
 
+    // create graph
+    class Graph {
+        int nrOfNodes;
+        List<Node> nodes;
+
+        Graph(String[] nodes) {
+            this.nrOfNodes = nodes.length;
+            this.nodes = new ArrayList<Node>();
+
+            for (int i = 0; i < nodes.length; i++) {
+                this.nodes.add(new Node(nodes[i], i == 0, i == nodes.length - 1));
+            }
+        }
+
+        Node findNode(String nodeName) {
+            for (Node node : this.nodes) {
+                if (node.name.equals(nodeName)) {
+                    return node;
+                }
+            }
+            return null;
+        }
+
+        String getShortestPath() {
+            StringBuilder path = new StringBuilder("");
+            Node nextNode = this.nodes.get(0);
+
+            if (nextNode.weight == 0) return "-1";
+
+            path.append(nextNode.name).append("-");
+            while ((nextNode = nextNode.getNextNeighbour()) != null) {
+                path.append(nextNode.name);
+                if (!nextNode.end) {
+                    path.append("-");
+                }
+            }
+            return path.toString();
+        }
+    }
+
+
+    String findWeightedPath(String[] strArr) {
+        int nrOfNodes = Integer.parseInt(strArr[0]);
+        String[] nodes = new String[nrOfNodes];
+        String[] connections = new String[strArr.length - nrOfNodes - 1];
+
+        for (int i = 1; i < strArr.length; i++) {
+            if (i <= nrOfNodes) {
+                nodes[i - 1] = strArr[i];
+            } else {
+                connections[i - nrOfNodes - 1] = strArr[i];
+            }
+
+        }
+
+        Graph graph = buildGraph(nodes, connections);
+        Node endNode = graph.nodes.get(graph.nodes.size() - 1);
+
+        // process weight from connections
+        processWeight(endNode);
+        return graph.getShortestPath();
+    }
+
+    Graph buildGraph(String[] nodes, String[] connections) {
+        Graph graph = new Graph(nodes);
+        for (Node node : graph.nodes) {
+            for (String connection : connections) {
+                if (connection.contains(node.name)) {
+                    String[] neighbours = connection.split("[|]");
+                    Node neighbour;
+                    if (neighbours[0].equals(node.name)) {
+                        neighbour = graph.findNode(neighbours[1]);
+                    } else {
+                        neighbour = graph.findNode(neighbours[0]);
+                    }
+
+                    node.addConnection(neighbour, Integer.parseInt(neighbours[2]));
+                }
+            }
+        }
+
+        return graph;
+    }
+
+    // process weight from connections
+    void processWeight(Node node) {
+        if (node.end) {
+            node.weight = 0;
+        }
+
+        for (Connection connection : node.connections) {
+            int weight = node.weight + connection.weight;
+            Node neigbour = connection.getOther(node);
+            if (neigbour.weight == 0 || weight < neigbour.weight) {
+                neigbour.weight = weight;
+
+                if (!neigbour.start) {
+                    processWeight(neigbour);
+                }
+            }
+        }
+
+    }
+
     public static void main (String[] args) {
         // keep this function call here
         Scanner s = new Scanner(System.in);
         WeightedPath c = new WeightedPath();
-        System.out.print(c.WeightedPath(new String[]{"7","A","B","C","D","E","F","G","A|B|1","A|E|9","B|C|2","C|D|1","D|F|2","E|D|6","F|G|2"}));
+        System.out.print(c.findWeightedPath(new String[]{"7","A","B","C","D","E","F","G","A|B|1","A|E|9","B|C|2","C|D|1","D|F|2","E|D|6","F|G|2"}));
     }
 }

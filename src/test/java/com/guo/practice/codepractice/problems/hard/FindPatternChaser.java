@@ -25,24 +25,26 @@ class FindPatternChaser {
       return "over 20 characters";
     }
 
-    String tempPat = "";
+    String tempPattern = "";
     int strLength = str.length();
 
-    for (int i = 0; i < strLength-1; i++) {
+    for (int i = 0; i < strLength - 1; i++) {
       Character current = str.charAt(i);
       int j = i + 1;
-      while(j<strLength){
+      while (j < strLength) {
         String currentStr = str.substring(i, j);
         String remainStr = str.substring(j, strLength);
-        if(currentStr.length() > 1 && remainStr.contains(currentStr) && currentStr.length()> tempPat.length()){
-          tempPat = currentStr;
+        if (currentStr.length() > 1
+            && remainStr.contains(currentStr)
+            && currentStr.length() > tempPattern.length()) {
+          tempPattern = currentStr;
         }
         j++;
       }
     }
 
-    if (tempPat.length() > 1) {
-      pattern = "yes " + tempPat;
+    if (tempPattern.length() > 1) {
+      pattern = "yes " + tempPattern;
     } else {
       pattern = "no null";
     }
@@ -50,10 +52,9 @@ class FindPatternChaser {
     return pattern;
   }
 
-
   @Test
   public void testPat() {
-//    String input = "aabejiabkfabed";
+    //    String input = "aabejiabkfabed";
     String input = "aabecaa";
 
     String output = findPatternSlidingWindow(input);
